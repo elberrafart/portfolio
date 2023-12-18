@@ -4,19 +4,39 @@ body, header {
     width: 100%;
 }
 
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Set the height to full viewport height */
+    width: 100vw; /* Set the width to full viewport width */
+}
+
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f3f3f3; /* Example background color */
+    background-color: #f3f3f3;
+    /* You might want to set a specific height for the header */
+}
+
+.logo {
+    font-family: 'Press Start 2P', 'Arial';
+    font-size: 30px;
 }
 
 .grid-container {
     display: grid;
-    grid-template: repeat(2, 1fr) / repeat(2, 1fr); /* Creates three columns of equal width */
-    grid-gap: 10px; /* Space between grid items */
-    padding: 20px; /* Padding around the grid */
+    grid-template-areas: 
+        "heading content"
+        "list content";
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    padding: 20px;
+    height: calc(100vh - [HeaderHeight]px); /* Adjust the height dynamically */
+    width: 100vw; /* Full viewport width */
 }
+
 
 .grid-item {
     background-color: #f3f3f3; /* Example background color for grid items */
@@ -24,6 +44,11 @@ header {
     border: 1px solid #ccc; /* Border for grid items */
     text-align: center;
 }
+
+.content-1 { grid-area: heading; }
+.content-2 { grid-area: content; }
+.content-3 { grid-area: list; }
+
 
 
 .logo-space {
