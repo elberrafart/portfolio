@@ -7,8 +7,9 @@ body, header {
 body, html {
     margin: 0;
     padding: 0;
-    height: 100vh; /* Set the height to full viewport height */
-    width: 100vw; /* Set the width to full viewport width */
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Press Start 2P', 'Arial';
 }
 
 
@@ -17,11 +18,9 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #f3f3f3;
-    /* You might want to set a specific height for the header */
 }
 
 .logo {
-    font-family: 'Press Start 2P', 'Arial';
     font-size: 30px;
 }
 
@@ -37,6 +36,17 @@ header {
     width: 100vw; /* Full viewport width */
 }
 
+.se-button {
+    position: absolute;
+    top: 35%;
+    right: 40%;
+    width: 200;
+    background-color: #EF5BA1;
+    border-radius: 20px;
+    border: solid black 2px;
+    width: 150px;
+    padding: 10px;
+}
 
 .grid-item {
     background-color: #f3f3f3; /* Example background color for grid items */
@@ -45,8 +55,23 @@ header {
     text-align: center;
 }
 
-.content-1 { grid-area: heading; }
-.content-2 { grid-area: content; }
+.profile-photo {
+    width: 400px;
+    border-radius: 20px;
+    border: solid 3px #00B799;
+    margin-top: 30px;
+}
+
+.content-1 { 
+    grid-area: heading;
+    margin-top: 100px
+}
+
+.content-2 {
+    grid-area: content;
+    margin-top: 50px;
+    min-height: 500px;
+}
 .content-3 { grid-area: list; }
 
 
