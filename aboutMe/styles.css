@@ -1,0 +1,114 @@
+body, header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Press Start 2P', 'Arial';
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f3f3;
+}
+
+.logo {
+    font-size: 30px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+        "heading content"
+        "list content";
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    padding: 20px;
+    height: calc(100vh - [HeaderHeight]px);
+    width: 100vw;
+}
+
+.se-button {
+    position: absolute;
+    top: 30%;
+    right: 40%;
+    width: 200;
+    background-color: #EF5BA1;
+    border-radius: 20px;
+    border: solid black 2px;
+    width: 220px;
+    padding: 10px;
+    font-size: 10px;;
+}
+
+.grid-item {
+    background-color: #f3f3f3; /* Example background color for grid items */
+    padding: 20px; /* Padding inside grid items */
+    border: 1px solid #ccc; /* Border for grid items */
+    text-align: center;
+}
+
+.profile-photo {
+    width: 400px;
+    border-radius: 20px;
+    border: solid 3px #00B799;
+    margin-top: 30px;
+}
+
+.content-1 { 
+    grid-area: heading;
+    margin-top: 100px
+}
+
+.content-2 {
+    grid-area: content;
+    margin-top: 50px;
+    min-height: 500px;
+}
+.content-3 { grid-area: list; }
+
+.logo-space {
+    margin-left: 20px; 
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: center; 
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0; 
+}
+
+nav ul li {
+    margin: 0 10px; 
+}
+
+button {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+}
+

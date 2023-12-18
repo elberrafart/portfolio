@@ -12,6 +12,21 @@ body, html {
     font-family: 'Press Start 2P', 'Arial';
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(251, 251, 132);
+}
+
+.work-btn {
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 10px;
+    color: black;
+    background-color: #FFAF00;
+}
 
 header {
     display: flex;
@@ -22,6 +37,13 @@ header {
 
 .logo {
     font-size: 30px;
+}
+
+.arrow {
+    background-color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 5px;
 }
 
 .grid-container {
@@ -38,14 +60,14 @@ header {
 
 .se-button {
     position: absolute;
-    top: 35%;
+    top: 30%;
     right: 40%;
-    width: 200;
     background-color: #EF5BA1;
-    border-radius: 20px;
+    border-radius: 40px;
     border: solid black 2px;
-    width: 150px;
+    width: 220px;
     padding: 10px;
+    font-size: 10px;
 }
 
 .grid-item {
