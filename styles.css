@@ -14,10 +14,11 @@ body, html {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 a:hover {
-    color: rgb(251, 251, 132);
+    color: #FCAC3F;
 }
 
 .work-btn {
@@ -54,13 +55,14 @@ header {
     grid-template-columns: 1fr 2fr;
     grid-gap: 10px;
     padding: 20px;
-    height: calc(100vh - [HeaderHeight]px); /* Adjust the height dynamically */
-    width: 100vw; /* Full viewport width */
+    height: calc(100vh - [HeaderHeight]px);
+    width: 100vw;
+    margin-left: 50px;
 }
 
 .se-button {
     position: absolute;
-    top: 30%;
+    top: 35%;
     right: 40%;
     background-color: #EF5BA1;
     border-radius: 40px;
@@ -86,17 +88,31 @@ header {
 
 .content-1 { 
     grid-area: heading;
-    margin-top: 100px
+    margin-top: 100px;
 }
+
+.content-1 p {
+    font-size: 10px;
+    line-height: 1rem;
+}
+
+.content-3 { 
+    grid-area: list;
+}
+
+li {
+    list-style-type: none;
+    font-size: 12px;
+    line-height: 1rem;
+}
+
 
 .content-2 {
     grid-area: content;
     margin-top: 50px;
+    margin-right: 40px;
     min-height: 500px;
 }
-.content-3 { grid-area: list; }
-
-
 
 .logo-space {
     margin-left: 20px; 
@@ -112,11 +128,11 @@ nav ul {
     display: flex;
     list-style-type: none;
     padding: 0;
-    margin: 0; 
+    margin-right: 0;
 }
 
 nav ul li {
-    margin: 0 10px; 
+    margin: 0 20px;
 }
 
 button {
