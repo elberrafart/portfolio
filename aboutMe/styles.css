@@ -70,6 +70,7 @@ header {
     width: 220px;
     padding: 10px;
     font-size: 10px;
+    cursor: pointer;
 }
 
 .grid-item {
