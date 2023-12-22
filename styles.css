@@ -1,4 +1,9 @@
 /* Base styles (for mobile) */
+/* Resetting margin and padding for nav and its parent elements */
+header, nav, ul, li {
+    margin: 0;
+    padding: 0;
+}
 
 body, html {
     margin: 0;
@@ -16,6 +21,15 @@ header {
     align-items: center;
     padding: 10px;
     background-color: #f3f3f3;
+}
+
+.logo-space {
+    margin-left: 20px;
+}
+
+.logo {
+    font-size: 30px;
+    color: inherit;
 }
 
 p {
@@ -97,9 +111,18 @@ a:hover {
     padding: 10px;
     width: 70px;
 }
+
+.link-imgs-con{
+    display: flex;
+}
+
+.link-img {
+    max-width: 100px;
+    margin: 10px;
+    border: solid 2px #EF5BA1;
+    border-radius: 10px;
+}
 /* /* Full Size Layout */
-
-
 @media screen and (min-width: 800px){
     body, header {
         margin: 0;
@@ -124,7 +147,6 @@ a:hover {
         color: inherit;
     }
     
-    
     #light-btn {
         border-radius: 50px;
         font-family: inherit;
@@ -142,39 +164,24 @@ a:hover {
         background-color: #f3f3f3;
     }
     
-    .logo {
-        font-size: 30px;
-        color: inherit;
-    }
-    
     .lightbulb {
         font-size: 20px;
         padding: 10px;
     }
     
     .grid-container {
+        margin: 0 20px; 
+        width: calc(100% - 40px); 
         display: grid;
         grid-template-areas: 
             "heading content"
             "list content";
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-gap: 10px;
-        padding: 20px;
+        /* padding: 20px; */
         height: calc(100vh - [HeaderHeight]px);
         width: 100vw;
         margin-left: 50px;
-    }
-    
-    .se-button {
-        position: absolute;
-        top: 35%;
-        right: 40%;
-        background-color: #EF5BA1;
-        border-radius: 40px;
-        border: solid black 2px;
-        width: 220px;
-        padding: 10px;
-        font-size: 10px;
     }
     
     .grid-item {
@@ -185,7 +192,6 @@ a:hover {
     
     .profile-photo {
         max-width: 400px;
-        
         margin-top: 30px;
     }
     
@@ -208,4 +214,9 @@ a:hover {
     button:hover {
         background-color: #0056b3; /* Darker shade for hover effect */
     }
+
+    footer {
+        margin-left: 30px;
+    }
+
 }
