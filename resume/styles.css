@@ -59,20 +59,16 @@ header {
 .resume-img {
     display: block;
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    border: solid 3px #00B799;
+    margin-top: 30px;
 }
 
 .grid-item {
     background-color: white; 
     padding: 20px;
     text-align: center;
-}
-
-.resume-img {
-    width: 600px;
-    border-radius: 20px;
-    border: solid 3px #00B799;
-    margin-top: 30px;
 }
 
 li {
