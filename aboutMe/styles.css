@@ -1,69 +1,98 @@
-body, header {
+/* Base styles (for mobile) */
+/* Resetting margin and padding for nav and its parent elements */
+header, nav, ul, li {
     margin: 0;
     padding: 0;
-    width: 100%;
 }
 
 body, html {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    width: 100vw;
     font-family: 'Press Start 2P', 'Arial';
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
-
-a:hover {
-    color: #FCAC3F;
-}
-
-.work-btn {
-    border-radius: 50px;
-    font-family: inherit;
-    font-size: 10px;
-    color: black;
-    background-color: #FFAF00;
-    cursor: pointer;
-    padding: 10px;
+body, #myHeader {
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
     background-color: #f3f3f3;
+}
+
+.logo-space {
+    margin-left: 20px;
 }
 
 .logo {
     font-size: 30px;
+    color: inherit;
 }
 
-.lightbulb {
-    font-size: 20px;
-    padding: 10px;
+p {
+    font-size: 12px;
 }
 
 .grid-container {
     display: grid;
     grid-template-areas: 
-        "content heading"
-        "content list";
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 10px;
-    padding: 20px;
-    height: calc(100vh - [HeaderHeight]px);
-    width: 100vw;
-    margin-left: 50px;
+        "header"
+        "content"
+        "list";
+    grid-template-columns: repeat(1fr);
 }
 
-.resume-button {
-    position: absolute;
-    top: 35%;
-    right: 25%;
+.content-3 { 
+    grid-area: list;
+}
+
+.content-1 {
+    padding: 12px;
+}
+
+
+.logo {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.navItems {
+    padding: 10px;
+    text-align: center;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #FCAC3F;
+}
+
+.profile-photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    border: solid 3px #00B799;
+}
+
+.resume-button {  
     background-color: #00B799;
     border-radius: 40px;
     border: solid black 2px;
@@ -73,67 +102,137 @@ header {
     cursor: pointer;
 }
 
-.grid-item {
-    background-color: white; 
-    padding: 20px;
-    text-align: center;
+
+
+#light-btn {
+    border-radius: 90px;
+    font-family: inherit;
+    font-size: 18px;
+    color: black;
+    background-color: #FFAF00;
+    cursor: pointer;
+    padding: 10px;
+    width: 70px;
 }
 
-.profile-photo {
-    width: 400px;
-    border-radius: 20px;
-    border: solid 3px #00B799;
-    margin-top: 30px;
-}
-
-.content-1 { 
-    grid-area: heading;
-    margin-top: 100px;
-    max-width: 700px;
-}
-
-.content-1 p {
-    font-size: 10px;
-    line-height: 1rem;
-}
-
-
-li {
-    list-style-type: none;
-    font-size: 12px;
-    line-height: 1rem;
-}
-
-.content-2 {
-    grid-area: content;
-    margin-top: 50px;
-    /* margin-right: 40px; */
-    min-height: 500px;
-}
-
-.logo-space {
-    margin-left: 20px; 
-}
-
-nav {
+.link-imgs-con{
     display: flex;
-    width: 100%;
-    justify-content: center; 
 }
 
-nav ul {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin-right: 0;
+.link-img {
+    max-width: 100px;
+    margin: 10px;
+    border: solid 2px #EF5BA1;
+    border-radius: 10px;
 }
+/* /* Full Size Layout */
+@media screen and (min-width: 800px){
+    body, header {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        font-family: 'Press Start 2P', 'Arial';
+    }
+    
+    nav ul {
+        flex-direction: row;
+    }
 
-nav ul li {
-    margin: 0 20px;
+    .navItems {
+        color: inherit;
+    }
+    
+    #light-btn {
+        border-radius: 50px;
+        font-family: inherit;
+        font-size: 10px;
+        color: black;
+        background-color: #FFAF00;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .resume-button {
+        position: absolute;
+        top: 35%;
+        right: 25%;
+    }
+    
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f3f3f3;
+    }
+    
+    .lightbulb {
+        font-size: 20px;
+    }
+
+    #light-btn {
+        position: relative;
+        top: -12px;
+        left: 20px;
+    }
+    
+    .grid-container {
+        margin: 0 20px; 
+        width: calc(100% - 40px); 
+        display: grid;
+        grid-template-areas: 
+            "heading content"
+            "list content";
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        /* padding: 20px; */
+        height: calc(100vh - [HeaderHeight]px);
+        width: 100vw;
+        margin-left: 50px;
+    }
+    
+    .grid-item {
+        background-color: inherit; 
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .profile-photo {
+        max-width: 400px;
+        margin-top: 30px;
+    }
+
+    .content-1 {
+        padding-top: 150px;
+    }
+    
+    nav {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        background-color: inherit;
+        margin-top: 30px;
+    }
+    
+    nav ul {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin-right: 0;
+    }
+    
+    button:hover {
+        background-color: #0056b3; /* Darker shade for hover effect */
+    }
+
+    footer {
+        margin-left: 30px;
+    }
+
 }
-
-
-button:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
-}
-
