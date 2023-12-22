@@ -166,7 +166,12 @@ a:hover {
     
     .lightbulb {
         font-size: 20px;
-        padding: 10px;
+    }
+
+    #light-btn {
+        position: relative;
+        top: -12px;
+        left: 20px;
     }
     
     .grid-container {
@@ -194,14 +199,17 @@ a:hover {
         max-width: 400px;
         margin-top: 30px;
     }
-    
-    
+
+    .content-1 {
+        padding-top: 150px;
+    }
     
     nav {
         display: flex;
         width: 100%;
         justify-content: center;
-        background-color: inherit; 
+        background-color: inherit;
+        margin-top: 30px;
     }
     
     nav ul {
