@@ -102,6 +102,7 @@ a:hover {
     text-align: center;
     font-size: 16px;
     cursor: pointer;
+    font-family: inherit;
 }
 
 .resume-button:hover {
