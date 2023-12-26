@@ -11,6 +11,10 @@ body, html {
     font-family: 'Press Start 2P', 'Arial';
 }
 
+h1 {
+    text-align: center;
+}
+
 body, #myHeader {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
@@ -34,15 +38,6 @@ header {
 
 p {
     font-size: 12px;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-areas: 
-        "header"
-        "content"
-        "list";
-    grid-template-columns: repeat(1fr);
 }
 
 .resume-img {
@@ -94,12 +89,6 @@ a:hover {
     color: #FCAC3F;
 }
 
-.profile-photo {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-    border: solid 3px #00B799;
-}
 
 .resume-button {  
     background-color: #00B799;
