@@ -169,27 +169,6 @@ a:hover {
         left: 20px;
     }
     
-    .grid-container {
-        margin: 0 20px; 
-        width: calc(100% - 40px); 
-        display: grid;
-        grid-template-areas: 
-            "heading content"
-            "list content";
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 10px;
-        /* padding: 20px; */
-        height: calc(100vh - [HeaderHeight]px);
-        width: 100vw;
-        margin-left: 50px;
-    }
-    
-    .grid-item {
-        background-color: inherit; 
-        padding: 20px;
-        text-align: center;
-    }
-    
     .profile-photo {
         max-width: 400px;
         margin-top: 30px;

@@ -1,3 +1,5 @@
+/* about me code */
+
 /* Base styles (for mobile) */
 /* Resetting margin and padding for nav and its parent elements */
 header, nav, ul, li {
@@ -65,15 +67,12 @@ nav ul {
     flex-direction: column;
     padding: 0;
     margin: 0;
+    list-style-type: none;
 }
 
 .navItems {
     padding: 10px;
     text-align: center;
-}
-
-ul li {
-    list-style-type: none;
 }
 
 a {
@@ -196,7 +195,6 @@ a:hover {
             "list content";
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 10px;
-        /* padding: 20px; */
         height: calc(100vh - [HeaderHeight]px);
         width: 100vw;
         margin-left: 50px;
@@ -233,7 +231,7 @@ a:hover {
     }
     
     button:hover {
-        background-color: #0056b3; /* Darker shade for hover effect */
+        background-color: #0056b3;
     }
 
     footer {

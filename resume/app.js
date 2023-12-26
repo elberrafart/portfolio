@@ -7,6 +7,5 @@ function darkMode(){
 }
 
 lightBtn.addEventListener('click', function(){
-    console.log('you clicked it')
     darkMode()
 })
