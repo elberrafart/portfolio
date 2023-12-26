@@ -1,45 +1,44 @@
-body, header {
+body, header, html {
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
 body, html {
-    margin: 0;
-    padding: 0;
     height: 100vh;
-    width: 100vw;
     font-family: 'Press Start 2P', 'Arial';
+}
+
+body, #myHeader {
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 a {
     text-decoration: none;
     color: black;
+    color: inherit;
 }
 
 a:hover {
     color: #FCAC3F;
 }
 
-.work-btn {
-    border-radius: 50px;
-    font-family: inherit;
-    font-size: 10px;
-    color: black;
-    background-color: #FFAF00;
-    cursor: pointer;
-    padding: 10px;
-}
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
     background-color: #f3f3f3;
 }
 
 .logo {
     font-size: 30px;
+    margin-left: 20px;
+}
+
+.logo-space {
+    margin-left: 20px;
 }
 
 .lightbulb {
@@ -51,25 +50,14 @@ header {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    height: calc(100vh - [HeaderHeight]px);
-    width: 100vw;
     text-align: center;
 }
 
-.resume-img {
+.resume-img, .project-img {
     display: block;
     margin: 0 auto;
     max-width: 100%;
-}
-
-.grid-item {
-    background-color: white; 
-    padding: 20px;
-    text-align: center;
-}
-
-.project-img {
-    width: 400px;
+    width: auto;
     border-radius: 20px;
     border: solid 3px #00B799;
     margin-top: 30px;
@@ -81,27 +69,40 @@ li {
     line-height: 1rem;
 }
 
-.logo-space {
-    margin-left: 20px; 
-}
-
 nav {
     display: flex;
-    width: 100%;
-    justify-content: center; 
+    justify-content: center;
 }
 
 nav ul {
     display: flex;
+    flex-direction: column;
     list-style-type: none;
     padding: 0;
-    margin-right: 0;
+    margin: 0;
 }
 
 nav ul li {
-    margin: 0 20px;
+    margin: 10px 0;
 }
 
+.navItems {
+    padding: 10px;
+    text-align: center;
+}
+
+#light-btn {
+    border-radius: 90px;
+    font-family: inherit;
+    font-size: 18px;
+    color: black;
+    background-color: #FFAF00;
+    cursor: pointer;
+    padding: 10px;
+    width: 70px;
+    margin-right: 10px;
+
+}
 
 button:hover {
     background-color: #0056b3; /* Darker shade for hover effect */
@@ -109,10 +110,79 @@ button:hover {
 
 .project-imgs-con {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .project-card {
-    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
+@media screen and (min-width: 800px){
+    body, header {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        font-family: 'Press Start 2P', 'Arial';
+    }
+
+
+    nav ul {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0 20px;
+    }
+
+    .navItems {
+        color: inherit;
+    }
+
+    #light-btn {
+        border-radius: 50px;
+        font-family: inherit;
+        font-size: 10px;
+        color: black;
+        background-color: #FFAF00;
+        cursor: pointer;
+        padding: 10px;
+        margin-right: 10px;
+    }
+
+    .project-imgs-con {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .project-card {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .project-img {
+        width: 400px; /* Fixed width for larger screens */
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f3f3f3;
+    }
+
+    .lightbulb {
+        font-size: 20px;
+    }
+
+    
+}
