@@ -76,6 +76,14 @@ nav ul {
     text-align: center;
 }
 
+#navMenu {
+    display: none;
+}
+
+#navMenu.active {
+    display: flex;
+}
+
 ul li {
     list-style-type: none;
 }

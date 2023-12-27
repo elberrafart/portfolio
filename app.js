@@ -18,3 +18,9 @@ lightBtn.addEventListener('click', function() {
     console.log('You clicked it');
     toggleTheme();
 });
+
+function toggleMenu() {
+    var menu = document.querySelector('nav ul');
+    menu.classList.toggle('active');
+}
+

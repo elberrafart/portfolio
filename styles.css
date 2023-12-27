@@ -72,6 +72,14 @@ nav ul {
     text-align: center;
 }
 
+#navMenu {
+    display: none;
+}
+
+#navMenu.active {
+    display: flex;
+}
+
 ul li {
     list-style-type: none;
 }
@@ -133,8 +141,12 @@ a:hover {
         font-family: 'Press Start 2P', 'Arial';
     }
     
+    .hamburger-menu {
+        display: none;
+    }
 
     nav ul {
+        display: flex;
         flex-direction: row;
     }
 

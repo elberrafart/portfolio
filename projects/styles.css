@@ -91,6 +91,14 @@ nav ul li {
     text-align: center;
 }
 
+#navMenu {
+    display: none;
+}
+
+#navMenu.active {
+    display: flex;
+}
+
 #light-btn {
     border-radius: 90px;
     font-family: inherit;
