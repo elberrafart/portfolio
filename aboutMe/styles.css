@@ -129,6 +129,12 @@ a:hover {
     border: solid 2px #EF5BA1;
     border-radius: 10px;
 }
+
+.darkmode {
+    background-color: 'black'; /*body*/
+    color: 'white'; /*body*/
+}
+
 /* /* Full Size Layout */
 @media screen and (min-width: 800px){
     body, header {
