@@ -141,6 +141,14 @@ button:hover {
         font-family: 'Press Start 2P', 'Arial';
     }
 
+    .hamburger-menu {
+        display: none;
+    }
+
+    #navMenu {
+        display: flex;
+        flex-direction: row;
+    }
 
     nav ul {
         flex-direction: row;
