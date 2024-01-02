@@ -135,7 +135,7 @@ a:hover {
     border: solid 2px #EF5BA1;
     border-radius: 10px;
 }
-/* /* Full Size Layout */
+/* Full Size Layout */
 @media screen and (min-width: 800px){
     body, header {
         margin: 0;
