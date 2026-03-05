@@ -200,10 +200,14 @@ p {
   color: var(--ink-muted);
 }
 
-/* Page sections for single-page scroll */
+/* Page sections - full viewport height for meaningful scroll */
 .page-section {
-  padding: 48px 0;
+  min-height: 100vh;
+  padding: 60px 0 80px;
   border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .page-section:last-of-type {
@@ -212,6 +216,29 @@ p {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Scroll-triggered reveal animation */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Welcome section visible immediately on load */
+#welcome.scroll-reveal {
+  transition-duration: 0.5s;
+}
+
+/* Stagger children slightly */
+.scroll-reveal .grid-container,
+.scroll-reveal h1 {
+  transition: opacity 0.6s ease-out 0.15s, transform 0.6s ease-out 0.15s;
 }
 
 /* Grid & Layout */
@@ -483,13 +510,58 @@ body.dark-mode .resume-button {
 
 /* About page adjustments */
 .about-content p {
-  max-width: 540px;
+  max-width: 560px;
+}
+
+.about-subhead {
+  font-size: 10px;
+  margin: 20px 0 8px;
+  color: var(--ink);
+  font-family: 'Press Start 2P', monospace;
 }
 
 .se-label {
   font-size: 10px;
   margin-top: 16px;
   color: var(--ink-muted);
+}
+
+/* Resume section - PDF embed */
+.resume-embed-wrap {
+  width: 100%;
+  max-width: 700px;
+  margin: 24px auto;
+  min-height: 70vh;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  background: var(--paper-darker);
+}
+
+.resume-pdf {
+  width: 100%;
+  height: 75vh;
+  min-height: 500px;
+  border: none;
+}
+
+.resume-download {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 16px 0 0 !important;
+}
+
+.resume-button-outline {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--border);
+}
+
+.resume-button-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
 }
 
 /* ============================================
