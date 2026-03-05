@@ -3,49 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raz Portfolio</title>
-    <link href="styles.css" rel="stylesheet">
+    <title>Projects - Raz Rafart</title>
+    <link href="../styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <header id="myHeader">
         <div class="logo-space">
-            <h1 class="logo">Raz Rafart</h1>    
+            <h1 class="logo"><a href="../index.html">Raz Rafart</a></h1>
         </div>
         <nav>
-            <button class="hamburger-menu" onclick="toggleMenu()">&#9776;</button>
+            <button class="hamburger-menu" onclick="toggleMenu()" aria-label="Toggle menu">&#9776;</button>
             <ul id="navMenu">
-                <li><a href="../index.html" class="link">Home</a></li>
-                <li><a href="../aboutMe/index.html" class="link">About Me</a></li>
-                <li><a href="../resume/index.html"  class="link">Resume</a></li>
-                <li><a href="../projects/index.html" class="link">Projects</a></li>
+                <li><a href="../index.html" class="navItems">Home</a></li>
+                <li><a href="../aboutMe/index.html" class="navItems">About Me</a></li>
+                <li><a href="../resume/index.html" class="navItems">Resume</a></li>
+                <li><a href="index.html" class="navItems">Projects</a></li>
             </ul>
-            <button id="light-btn"><i class="fa-solid fa-lightbulb fa-beat lightbulb"></i></button>
+            <button id="light-btn" aria-label="Toggle dark mode">☀</button>
         </nav>
     </header>
 
-    <div class="grid-container">
-        <h1>Projects</h1>
-        <div class="project-imgs-con">
-            <div class="project-card">
-                <a href="https://elberrafart.github.io/hang-man/" target="_blank">
-                    <img src="../images/SuperPlumberHangman.png" class="project-img">
-                </a>
-                <a href="https://elberrafart.github.io/hang-man/" target="_blank">
-                    <p>Super Plumber Hangman</p>
-                </a>
-            </div>
-            <div class="project-card">
-                <img src="../images/UnderConstruction.png" class="project-img">
-                <p>Under Construction</p>
+    <main class="notebook-page">
+        <div class="grid-container">
+            <h1>Projects</h1>
+            <div class="project-imgs-con">
+                <div class="project-card">
+                    <a href="https://elberrafart.github.io/hang-man/" target="_blank" rel="noopener noreferrer">
+                        <div class="project-img-wrap">
+                            <img src="../images/SuperPlumberHangman.png" alt="Super Plumber Hangman" class="project-img">
+                        </div>
+                    </a>
+                    <a href="https://elberrafart.github.io/hang-man/" target="_blank" rel="noopener noreferrer">
+                        <p>Super Plumber Hangman</p>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <a href="https://github.com/elberrafart" target="_blank" rel="noopener noreferrer" title="Tradeflow - Coming soon">
+                        <div class="project-img-wrap">
+                            <img src="../images/tradeflow-placeholder.png" alt="Tradeflow App" class="project-img">
+                        </div>
+                    </a>
+                    <p>Tradeflow App</p>
+                </div>
             </div>
         </div>
-        
-    </div>
-    <script src="app.js"></script>
-    <script src="https://kit.fontawesome.com/aebfb12fdd.js" crossorigin="anonymous"></script>
+    </main>
+    <script src="../app.js"></script>
 </body>
-
 </html>

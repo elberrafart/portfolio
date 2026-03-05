@@ -3,67 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raz Portfolio</title>
+    <title>Raz Rafart - Portfolio</title>
     <link href="styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <header id="myHeader">
         <div class="logo-space">
-            <h1 class="logo">Raz Rafart</h1>    
+            <h1 class="logo"><a href="index.html">Raz Rafart</a></h1>
         </div>
         <nav>
-            <button class="hamburger-menu" onclick="toggleMenu()">&#9776;</button>
+            <button class="hamburger-menu" onclick="toggleMenu()" aria-label="Toggle menu">&#9776;</button>
             <ul id="navMenu">
                 <li><a href="index.html" class="navItems">Home</a></li>
                 <li><a href="aboutMe/index.html" class="navItems">About Me</a></li>
                 <li><a href="resume/index.html" class="navItems">Resume</a></li>
                 <li><a href="projects/index.html" class="navItems">Projects</a></li>
             </ul>
-            <button id="light-btn"><i class="fa-solid fa-lightbulb fa-beat lightbulb"></i></button>
+            <button id="light-btn" aria-label="Toggle dark mode">☀</button>
         </nav>
     </header>
 
-    <div class="grid-container">
-        <div class="grid-item content-1">
-            <h1>Welcome To My House!</h1>
-            <p>Hey I'm Raz, a software engineer with a rich background in IT Support.
-                Welcome to my portfolio site. Feel free to take a look around.
-            </p>
-        </div>
-        <div class="grid-item content-3">
-            
-        </div>
-        <div class="grid-item content-2">
-            <p class="se-button">Software Engineer</p>
-            <img src="https://media.licdn.com/dms/image/D5603AQGL1ZDMwVzXTA/profile-displayphoto-shrink_800_800/0/1670355444195?e=1708560000&v=beta&t=uDc3Fz7ltoxWQxIQVQkXicrMVn5q_Q4BRBXjf1go1Mw"
-            class="profile-photo">
-        </div>
-    </div>
-    <footer>
-        <div class="link-imgs-con">
-            <div class="link-card">
-                <a href="https://linkedin.com/in/raz-rafart" target="_blank">
-                    <img src="../images/linkedinlogo.jpg" class="link-img">
-                </a>
-                <a href="https://linkedin.com/in/raz-rafart" target="_blank">
-                    <p>Linkedin</p>
-                </a>
+    <main class="notebook-page">
+        <div class="grid-container two-col">
+            <div class="grid-item content-1">
+                <h1>Welcome To My House!</h1>
+                <p>Hey I'm Raz, a software engineer with a rich background in IT Support.
+                    Welcome to my portfolio site. Feel free to take a look around.
+                </p>
+                <p class="se-label">Software Engineer</p>
             </div>
-            <div class="link-card">
-                <a href="https://github.com/elberrafart" target="_blank">
-                    <img src="../images/githublogo.jpg" class="link-img">
-                </a>
-                <a href="https://github.com/elberrafart" target="_blank">
-                    <p>Github</p>
-                </a>
+            <div class="grid-item content-2">
+                <img src="images/aboutmeImage.png" alt="Raz Rafart" class="profile-photo">
             </div>
         </div>
-    </footer>
+        <footer>
+            <div class="link-imgs-con">
+                <div class="link-card">
+                    <a href="https://linkedin.com/in/raz-rafart" target="_blank" rel="noopener noreferrer">
+                        <img src="images/linkedinlogo.jpg" alt="LinkedIn" class="link-img">
+                    </a>
+                    <a href="https://linkedin.com/in/raz-rafart" target="_blank" rel="noopener noreferrer">
+                        <p>LinkedIn</p>
+                    </a>
+                </div>
+                <div class="link-card">
+                    <a href="https://github.com/elberrafart" target="_blank" rel="noopener noreferrer">
+                        <img src="images/githublogo.jpg" alt="GitHub" class="link-img">
+                    </a>
+                    <a href="https://github.com/elberrafart" target="_blank" rel="noopener noreferrer">
+                        <p>GitHub</p>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </main>
     <script src="app.js"></script>
-    <script src="https://kit.fontawesome.com/aebfb12fdd.js" crossorigin="anonymous"></script>
 </body>
-
 </html>
