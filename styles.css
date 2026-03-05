@@ -213,32 +213,37 @@ p {
 
 /* Page sections - card stacking effect */
 .page-section {
-  min-height: 100vh;
-  padding: 60px 28px 80px;
+  /* No min-height: auto height so the card is as tall as its content */
+  padding: 48px 32px 52px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
+  /* Extra margin-bottom = scroll space between cards before they stack */
+  margin-bottom: 60vh;
   /* Card styling */
   background: var(--paper);
   border-radius: 20px;
   border: 1px solid var(--border);
+  /* Default shadow — JS overrides dynamically as cards approach stacking */
   box-shadow:
-    0 2px 6px rgba(15, 15, 15, 0.04),
-    0 8px 32px rgba(15, 15, 15, 0.08),
-    0 24px 64px rgba(15, 15, 15, 0.04);
+    0 4px 12px rgba(15, 15, 15, 0.06),
+    0 16px 40px rgba(15, 15, 15, 0.08);
   /* Stacking transform */
   transform-origin: top center;
-  will-change: transform, filter;
-  transition: box-shadow 0.4s ease;
-  margin-bottom: 20px;
+  will-change: transform, filter, box-shadow;
+  /* Only transition transform + filter; box-shadow is set each frame by JS */
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.page-section:last-of-type {
+  margin-bottom: 60px;
 }
 
 body.dark-mode .page-section {
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.2),
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    0 24px 64px rgba(0, 0, 0, 0.2);
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* Thin accent stripe at top of each card */
@@ -769,13 +774,8 @@ body.dark-mode .resume-arrow:hover:not(:disabled) {
   background: var(--paper-darker);
 }
 
-/* ── Notebook-page position context for card ::before ─────────── */
-.notebook-page {
-  position: relative;
-}
-
 @media (min-width: 800px) {
   .page-section {
-    padding: 60px 48px 80px;
+    padding: 56px 52px 60px;
   }
 }

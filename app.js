@@ -21,6 +21,18 @@ document.querySelectorAll('.navItems').forEach(link => {
   });
 });
 
+// ── Nav link smooth scroll (fixes sticky-section anchor issues) ────────
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const id = link.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    // Use offsetTop so we scroll to the section's natural document-flow position
+    window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+  });
+});
+
 // ── Card stacking scroll effect ────────────────────────────────────────
 (function () {
   const sections = Array.from(document.querySelectorAll('.page-section'));
@@ -51,15 +63,41 @@ document.querySelectorAll('.navItems').forEach(link => {
     const active = getActiveIndex();
 
     sections.forEach((s, i) => {
-      const depth = active - i; // how many cards are stacked on top of this one
+      const depth     = active - i;
+      const stickyTop = HEADER_H + i * PEEK;
+      const rect      = s.getBoundingClientRect();
+
       if (depth > 0) {
+        // ── Buried card: scale down + dim ──────────────────────────
         const scale = 1 - depth * SCALE_D;
         const ty    = -(depth * PEEK * 0.4);
         s.style.transform = `scale(${scale}) translateY(${ty}px)`;
         s.style.filter    = `brightness(${Math.max(0.68, 1 - depth * DIM_D)})`;
+        s.style.boxShadow = ''; // let CSS handle buried cards
       } else {
+        // ── Active / upcoming card ──────────────────────────────────
         s.style.transform = 'scale(1) translateY(0)';
         s.style.filter    = 'brightness(1)';
+
+        // Dynamic shadow: grows as this card approaches sticking over the one below.
+        // This makes it look like the card is lifting off and hovering above the stack.
+        if (i > 0) {
+          const distFromStuck = Math.max(0, rect.top - stickyTop);
+          // 0 = far away, 1 = fully stuck on top of previous card
+          const progress = Math.max(0, Math.min(1, 1 - distFromStuck / (window.innerHeight * 0.55)));
+
+          if (progress > 0) {
+            const shadowY    = 8  + progress * 44;   // shadow moves further down
+            const shadowBlur = 20 + progress * 70;   // shadow spreads wider
+            const alpha      = 0.06 + progress * 0.30; // shadow darkens
+            s.style.boxShadow = [
+              `0 ${shadowY}px ${shadowBlur}px rgba(15,15,15,${alpha.toFixed(2)})`,
+              `0 2px 8px rgba(15,15,15,0.05)`
+            ].join(', ');
+          } else {
+            s.style.boxShadow = ''; // use CSS default
+          }
+        }
       }
     });
 
@@ -75,9 +113,9 @@ document.querySelectorAll('.navItems').forEach(link => {
     const navLinks = document.querySelectorAll('.navItems');
     const ids = sections.map(s => s.id);
     navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      const isActive = href && ids[active] && href.includes(ids[active]);
-      link.classList.toggle('nav-active', isActive);
+      const href = link.getAttribute('href') || '';
+      const isActive = ids[active] && href.includes(ids[active]);
+      link.classList.toggle('nav-active', Boolean(isActive));
     });
   }
 
