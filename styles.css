@@ -60,6 +60,8 @@ body.dark-mode {
   padding: 24px 20px 60px;
   position: relative;
   background: transparent;
+  /* Clip cards that slide in from the side without breaking sticky */
+  overflow-x: clip;
 }
 
 /* Subtle left margin line (notebook spine) */
@@ -605,35 +607,28 @@ body.dark-mode .resume-button-outline:hover {
   color: var(--ink-muted);
 }
 
-/* Resume section - PDF embed */
+/* Resume section — full-card PDF */
+.resume-section {
+  padding-bottom: 48px;
+}
+
 .resume-embed-wrap {
   width: 100%;
-  max-width: 680px;
-  margin: 24px auto;
-  height: 62vh;
-  min-height: 440px;
-  max-height: 640px;
-  border-radius: 14px;
+  max-width: 100%;
+  margin: 20px 0 0;
+  height: 80vh;
+  min-height: 560px;
+  border-radius: 12px;
   overflow: hidden;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   background: var(--paper-darker);
-  box-shadow: 0 4px 24px rgba(15, 15, 15, 0.10);
-  transition: box-shadow 0.3s;
-}
-
-.resume-embed-wrap:hover {
-  box-shadow: 0 8px 40px rgba(15, 15, 15, 0.15);
-}
-
-body.dark-mode .resume-embed-wrap {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .resume-pdf {
   width: 100%;
   height: 100%;
-  min-height: 440px;
   border: none;
+  display: block;
 }
 
 /* Resume page arrows - theme-matched pager */
