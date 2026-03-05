@@ -185,6 +185,18 @@ a:hover, .navItems:hover {
   transform: scale(1.05);
 }
 
+/* Dark mode - keep buttons visible (don't blend into background) */
+body.dark-mode #light-btn {
+  background: var(--paper-darker);
+  border-color: var(--ink-muted);
+  color: var(--ink);
+}
+
+body.dark-mode #light-btn:hover {
+  background: var(--ink-muted);
+  color: var(--paper);
+}
+
 /* Typography */
 h1 {
   font-size: clamp(14px, 3vw, 18px);
@@ -218,14 +230,41 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Scroll-triggered reveal animation */
+/* Scroll-triggered reveal animation - more visible slide-up + fade */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+  transform: translateY(56px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggered reveal for content inside sections */
+.scroll-reveal .grid-container,
+.scroll-reveal .project-imgs-con,
+.scroll-reveal .resume-embed-wrap {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.scroll-reveal.revealed .grid-container,
+.scroll-reveal.revealed .project-imgs-con,
+.scroll-reveal.revealed .resume-embed-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal h1 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+}
+
+.scroll-reveal.revealed h1 {
   opacity: 1;
   transform: translateY(0);
 }
@@ -233,12 +272,6 @@ html {
 /* Welcome section visible immediately on load */
 #welcome.scroll-reveal {
   transition-duration: 0.5s;
-}
-
-/* Stagger children slightly */
-.scroll-reveal .grid-container,
-.scroll-reveal h1 {
-  transition: opacity 0.6s ease-out 0.15s, transform 0.6s ease-out 0.15s;
 }
 
 /* Grid & Layout */
@@ -412,8 +445,21 @@ footer {
 }
 
 body.dark-mode .resume-button {
-  background: var(--ink);
+  background: var(--ink) !important;
   color: var(--paper) !important;
+  border: 2px solid var(--ink);
+}
+
+body.dark-mode .resume-button-outline {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--ink-muted);
+}
+
+body.dark-mode .resume-button-outline:hover {
+  border-color: var(--ink);
+  color: var(--ink) !important;
+  background: rgba(235, 235, 235, 0.08) !important;
 }
 
 /* Resume placeholder */
@@ -526,12 +572,14 @@ body.dark-mode .resume-button {
   color: var(--ink-muted);
 }
 
-/* Resume section - PDF embed */
+/* Resume section - PDF embed, reasonable size */
 .resume-embed-wrap {
   width: 100%;
-  max-width: 700px;
-  margin: 24px auto;
-  min-height: 70vh;
+  max-width: 620px;
+  margin: 20px auto;
+  height: 52vh;
+  min-height: 380px;
+  max-height: 520px;
   border-radius: 12px;
   overflow: hidden;
   border: 2px solid var(--border);
@@ -540,9 +588,66 @@ body.dark-mode .resume-button {
 
 .resume-pdf {
   width: 100%;
-  height: 75vh;
-  min-height: 500px;
+  height: 100%;
+  min-height: 380px;
   border: none;
+}
+
+/* Resume page arrows - theme-matched pager */
+.resume-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 16px 0 8px;
+}
+
+.resume-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--paper-darker);
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.resume-arrow:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--paper);
+  transform: scale(1.08);
+}
+
+.resume-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.resume-page-num {
+  font-size: 10px;
+  color: var(--ink-muted);
+  min-width: 48px;
+  text-align: center;
+}
+
+body.dark-mode .resume-arrow {
+  background: var(--paper-darker);
+  border-color: var(--ink-muted);
+  color: var(--ink);
+}
+
+body.dark-mode .resume-arrow:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: var(--ink-muted);
+  color: var(--paper);
 }
 
 .resume-download {

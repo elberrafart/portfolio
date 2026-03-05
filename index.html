@@ -98,7 +98,12 @@
         <section id="resume" class="page-section scroll-reveal">
             <h1>Resume</h1>
             <div class="resume-embed-wrap">
-                <iframe src="resume/ElberRafartResumeTech.pdf" class="resume-pdf" title="Raz Rafart Resume"></iframe>
+                <iframe id="resume-pdf-frame" src="resume/ElberRafartResumeTech.pdf#page=1" class="resume-pdf" title="Raz Rafart Resume"></iframe>
+            </div>
+            <div class="resume-pager">
+                <button type="button" class="resume-arrow" id="resume-prev" aria-label="Previous page">←</button>
+                <span class="resume-page-num"><span id="resume-current-page">1</span> / 2</span>
+                <button type="button" class="resume-arrow" id="resume-next" aria-label="Next page">→</button>
             </div>
             <p class="resume-download">
                 <a href="resume/ElberRafartResumeTech.pdf" target="_blank" rel="noopener noreferrer" class="resume-button">Download PDF</a>
