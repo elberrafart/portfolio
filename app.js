@@ -29,45 +29,54 @@ document.querySelectorAll('.navItems').forEach(link => {
   const DIM_D      = 0.08;
   const PUSH_D     = 6;
 
-  // ── Pre-compute scroll targets BEFORE applying sticky ─────────────
-  // We walk the offsetParent chain while the elements are still in normal
-  // flow, giving us their true document-absolute positions. These are stored
-  // as data attributes and used for nav clicks regardless of scroll state.
-  function getDocumentTop(el) {
+  // ── Helper: walk offsetParent chain for true document position ─────
+  function docTop(el) {
     let top = 0, node = el;
     while (node) { top += node.offsetTop; node = node.offsetParent; }
     return top;
   }
 
+  // ── Pre-compute nav targets NOW, before sticky is applied ──────────
+  // Sticky/transforms at click-time would corrupt live measurements,
+  // so we snapshot positions here while the page is in normal flow.
+  const navTargets = new Map();
   sections.forEach(s => {
-    s.dataset.navTarget = Math.max(0, getDocumentTop(s) - STICKY_TOP);
+    navTargets.set(s.id, Math.max(0, docTop(s) - STICKY_TOP));
   });
 
-  // ── Wire up nav and logo clicks ───────────────────────────────────
-  function scrollToId(id) {
-    if (!id) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
-    const el = document.getElementById(id);
-    if (!el || el.dataset.navTarget === undefined) return;
-    window.scrollTo({ top: parseFloat(el.dataset.navTarget), behavior: 'smooth' });
+  // ── Nav clicks ─────────────────────────────────────────────────────
+  function goTo(id) {
+    const top = id ? navTargets.get(id) : 0;
+    if (top === undefined) return;
+    // 'instant' avoids smooth-scroll being cancelled mid-way by the browser
+    window.scrollTo({ top, behavior: 'instant' });
+    // Force a stack update immediately so the correct card is shown
+    requestAnimationFrame(updateStack);
   }
 
-  document.querySelectorAll('.navItems, .logo a').forEach(link => {
+  document.querySelectorAll('.navItems').forEach(link => {
     link.addEventListener('click', function (e) {
       const href = this.getAttribute('href') || '';
       if (!href.startsWith('#')) return;
       e.preventDefault();
-      scrollToId(href.slice(1));
+      goTo(href.slice(1));
     });
   });
 
-  // ── Apply sticky positioning ──────────────────────────────────────
+  // Logo → back to top
+  const logo = document.querySelector('.logo a');
+  if (logo) {
+    logo.addEventListener('click', e => { e.preventDefault(); goTo(''); });
+  }
+
+  // ── Apply sticky ───────────────────────────────────────────────────
   sections.forEach((s, i) => {
     s.style.position = 'sticky';
     s.style.top      = `${STICKY_TOP}px`;
-    s.style.zIndex   = 10 + i;
+    s.style.zIndex   = 10 + i; // higher index = on top when active
   });
 
-  // ── Scroll animation ──────────────────────────────────────────────
+  // ── Scroll animation ───────────────────────────────────────────────
   function getActiveIndex() {
     let active = 0;
     sections.forEach((s, i) => {
@@ -91,29 +100,36 @@ document.querySelectorAll('.navItems').forEach(link => {
         s.style.transform = `translateX(${tx}%) scale(${scale})`;
         s.style.filter    = `brightness(${bri})`;
         s.style.boxShadow = '';
+
       } else if (i === active) {
-        // Top card: fully in place
+        // Top card: fully in place, no transform
         s.style.transform = 'translateX(0) scale(1)';
         s.style.filter    = 'brightness(1)';
         s.style.boxShadow = '';
+
       } else {
-        // Incoming: slide from right with growing shadow
+        // Incoming: fully off-screen right, slides into place.
+        // overflow-x: hidden on html/body clips it so it's invisible
+        // until it enters the viewport — no z-index overlap issues.
         const dist     = Math.max(0, rect.top - STICKY_TOP);
         const progress = Math.max(0, Math.min(1, 1 - dist / (window.innerHeight * 0.65)));
-        const tx       = (1 - progress) * 55; // 55% keeps card mostly within viewport
+        const tx       = (1 - progress) * 100; // 100% = fully off right edge
+
         s.style.transform = `translateX(${tx.toFixed(1)}%)`;
         s.style.filter    = 'brightness(1)';
-        if (progress > 0) {
-          const blur  = 20 + progress * 70;
-          const alpha = 0.04 + progress * 0.30;
-          s.style.boxShadow = `-12px 0 ${blur.toFixed(0)}px rgba(15,15,15,${alpha.toFixed(2)})`;
+
+        // Left-edge shadow grows as the card approaches the stack
+        if (progress > 0.05) {
+          const blur  = 20 + progress * 80;
+          const alpha = 0.04 + progress * 0.28;
+          s.style.boxShadow = `-16px 0 ${blur.toFixed(0)}px rgba(15,15,15,${alpha.toFixed(2)})`;
         } else {
           s.style.boxShadow = '';
         }
       }
     });
 
-    // Progress bar
+    // Scroll progress bar
     const prog = document.getElementById('scroll-progress');
     if (prog) {
       const docH = document.documentElement.scrollHeight - window.innerHeight;

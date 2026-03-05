@@ -35,6 +35,8 @@ body, html {
   background: var(--page-bg);
   color: var(--ink);
   line-height: 1.6;
+  /* Clip incoming cards that slide in from the right — doesn't break sticky */
+  overflow-x: hidden;
 }
 
 body, #myHeader {
@@ -57,7 +59,10 @@ body.dark-mode {
   min-height: calc(100vh - 60px);
   max-width: 900px;
   margin: 0 auto;
-  padding: 24px 20px 60px;
+  /* Extra bottom padding ensures the last section's nav target is always
+     scrollable — without it, the page ends too soon to reach resume's
+     sticky position and nav clicks appear to do nothing */
+  padding: 24px 20px 70vh;
   position: relative;
   background: transparent;
 }
