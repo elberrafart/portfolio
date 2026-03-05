@@ -6,6 +6,7 @@
 :root {
   --paper: #f7f6f3;
   --paper-darker: #ebe9e4;
+  --page-bg: #dedad4;
   --ink: #37352f;
   --ink-muted: #6b6b6b;
   --accent: #2383e2;
@@ -31,7 +32,7 @@ body, html {
   padding: 0;
   min-height: 100vh;
   font-family: 'Press Start 2P', monospace;
-  background: var(--paper);
+  background: var(--page-bg);
   color: var(--ink);
   line-height: 1.6;
 }
@@ -42,8 +43,9 @@ body, #myHeader {
 
 /* Dark mode */
 body.dark-mode {
-  --paper: #191919;
-  --paper-darker: #252525;
+  --paper: #1e1e1e;
+  --paper-darker: #2a2a2a;
+  --page-bg: #111111;
   --ink: #ebebeb;
   --ink-muted: #9b9a97;
   --border: #373737;
@@ -57,10 +59,7 @@ body.dark-mode {
   margin: 0 auto;
   padding: 24px 20px 60px;
   position: relative;
-  background: linear-gradient(
-    var(--paper) 0%,
-    var(--paper) 100%
-  );
+  background: transparent;
 }
 
 /* Subtle left margin line (notebook spine) */
@@ -212,18 +211,47 @@ p {
   color: var(--ink-muted);
 }
 
-/* Page sections - full viewport height for meaningful scroll */
+/* Page sections - card stacking effect */
 .page-section {
   min-height: 100vh;
-  padding: 60px 0 80px;
-  border-bottom: 1px solid var(--border);
+  padding: 60px 28px 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  /* Card styling */
+  background: var(--paper);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow:
+    0 2px 6px rgba(15, 15, 15, 0.04),
+    0 8px 32px rgba(15, 15, 15, 0.08),
+    0 24px 64px rgba(15, 15, 15, 0.04);
+  /* Stacking transform */
+  transform-origin: top center;
+  will-change: transform, filter;
+  transition: box-shadow 0.4s ease;
+  margin-bottom: 20px;
 }
 
-.page-section:last-of-type {
-  border-bottom: none;
+body.dark-mode .page-section {
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 24px 64px rgba(0, 0, 0, 0.2);
+}
+
+/* Thin accent stripe at top of each card */
+.page-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  border-radius: 0 0 3px 3px;
+  background: var(--accent);
+  opacity: 0.4;
 }
 
 html {
@@ -572,24 +600,34 @@ body.dark-mode .resume-button-outline:hover {
   color: var(--ink-muted);
 }
 
-/* Resume section - PDF embed, reasonable size */
+/* Resume section - PDF embed */
 .resume-embed-wrap {
   width: 100%;
-  max-width: 620px;
-  margin: 20px auto;
-  height: 52vh;
-  min-height: 380px;
-  max-height: 520px;
-  border-radius: 12px;
+  max-width: 680px;
+  margin: 24px auto;
+  height: 62vh;
+  min-height: 440px;
+  max-height: 640px;
+  border-radius: 14px;
   overflow: hidden;
   border: 2px solid var(--border);
   background: var(--paper-darker);
+  box-shadow: 0 4px 24px rgba(15, 15, 15, 0.10);
+  transition: box-shadow 0.3s;
+}
+
+.resume-embed-wrap:hover {
+  box-shadow: 0 8px 40px rgba(15, 15, 15, 0.15);
+}
+
+body.dark-mode .resume-embed-wrap {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .resume-pdf {
   width: 100%;
   height: 100%;
-  min-height: 380px;
+  min-height: 440px;
   border: none;
 }
 
@@ -710,3 +748,34 @@ body.dark-mode .resume-arrow:hover:not(:disabled) {
   color: var(--paper) !important;
 }
 */
+
+/* ── Scroll progress bar ───────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 200;
+  border-radius: 0 2px 2px 0;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ── Active nav indicator ──────────────────────────────────────── */
+.navItems.nav-active {
+  color: var(--accent);
+  background: var(--paper-darker);
+}
+
+/* ── Notebook-page position context for card ::before ─────────── */
+.notebook-page {
+  position: relative;
+}
+
+@media (min-width: 800px) {
+  .page-section {
+    padding: 60px 48px 80px;
+  }
+}
